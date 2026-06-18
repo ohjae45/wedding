@@ -1,4 +1,3 @@
-import AdminToggle from '@components/common/AdminToggle';
 import MusicToggle from '@components/common/MusicToggle';
 import About from '@components/sections/About';
 import Account from '@components/sections/Account';
@@ -37,7 +36,6 @@ function App() {
       <Guestbook />
       <Share />
       <Footer />
-      <AdminToggle />
     </div>
   );
 }
