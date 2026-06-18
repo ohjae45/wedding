@@ -1,0 +1,10 @@
+.kakao-map {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid mixin.$line;
+
+  // 카카오 로고/저작권 등 SDK 내부 요소는 그대로 둡니다.
+}

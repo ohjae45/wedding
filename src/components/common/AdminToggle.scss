@@ -1,0 +1,25 @@
+.admin-toggle {
+  @include mixin.flex-center;
+  padding: 0 0 28px;
+  background: mixin.$bg;
+
+  &__btn {
+    @include mixin.reset-button;
+    padding: 7px 16px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: mixin.$ink-soft;
+    border: 1px solid mixin.$line;
+    border-radius: 16px;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
+
+    &--on {
+      color: mixin.$white;
+      background: mixin.$accent;
+      border-color: mixin.$accent;
+    }
+  }
+}

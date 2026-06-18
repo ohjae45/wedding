@@ -1,0 +1,10 @@
+.invitation {
+  position: relative;
+  width: 100%;
+  max-width: mixin.$max-width;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: mixin.$bg;
+  box-shadow: 0 0 40px rgba(80, 64, 48, 0.12);
+  overflow-x: hidden;
+}

@@ -1,0 +1,28 @@
+rules_version = '2';
+
+// Firebase 콘솔 → Firestore Database → 규칙(Rules) 탭에 아래 내용을 붙여넣고 게시하세요.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 방명록(축하 메시지)
+    match /guestbook/{id} {
+      // 누구나 조회 가능
+      allow read: if true;
+
+      // 등록: 이름/메시지 형식·길이 검증 (스팸/악용 1차 방지)
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.name.size() >= 1
+                    && request.resource.data.name.size() <= 20
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() >= 1
+                    && request.resource.data.message.size() <= 300;
+
+      // 수정 불가
+      allow update: if false;
+
+      // 삭제: 비밀번호 검증은 클라이언트에서 수행(간이 보호).
+      // 완전 차단을 원하면 false 로 바꾸고 콘솔에서만 삭제하세요.
+      allow delete: if true;
+    }
+  }
+}

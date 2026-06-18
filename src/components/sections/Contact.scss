@@ -1,0 +1,53 @@
+.contact {
+  background: mixin.$bg;
+
+  &__list {
+    @include mixin.flex-column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    background: mixin.$white;
+    border: 1px solid mixin.$line;
+    border-radius: 10px;
+  }
+
+  &__who {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  &__label {
+    font-size: 13px;
+    color: mixin.$accent-deep;
+  }
+
+  &__name {
+    font-size: 15px;
+    color: mixin.$ink;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+
+    a {
+      @include mixin.flex-center;
+      width: 52px;
+      height: 34px;
+      font-size: 13px;
+      text-decoration: none;
+      color: mixin.$accent-deep;
+      border: 1px solid mixin.$accent;
+      border-radius: 18px;
+    }
+  }
+}

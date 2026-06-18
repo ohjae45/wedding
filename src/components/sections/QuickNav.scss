@@ -1,0 +1,25 @@
+.quicknav {
+  @include mixin.flex-center;
+  gap: 10px;
+  padding: 28px 32px;
+  background: mixin.$bg;
+
+  button {
+    @include mixin.reset-button;
+    flex: 1;
+    padding: 12px 6px;
+    font-size: 13px;
+    color: mixin.$ink;
+    background: mixin.$white;
+    border: 1px solid mixin.$line;
+    border-radius: 22px;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+
+    &:active {
+      color: mixin.$accent-deep;
+      border-color: mixin.$accent;
+    }
+  }
+}

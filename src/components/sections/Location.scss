@@ -1,0 +1,102 @@
+.location {
+  background: #fdfbf7;
+
+  &__head {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  &__name {
+    font-size: 20px;
+    font-weight: 500;
+    color: mixin.$ink;
+  }
+
+  &__hall {
+    margin-top: 4px;
+    font-size: 14px;
+    color: mixin.$ink-soft;
+  }
+
+  &__addr {
+    margin-top: 10px;
+    font-size: 14px;
+    color: mixin.$ink-soft;
+  }
+
+  &__actions {
+    @include mixin.flex-center;
+    gap: 8px;
+    margin-top: 16px;
+
+    button,
+    a {
+      @include mixin.reset-button;
+      padding: 8px 18px;
+      font-size: 13px;
+      color: mixin.$accent-deep;
+      border: 1px solid mixin.$accent;
+      border-radius: 20px;
+      text-decoration: none;
+    }
+  }
+
+  &__map {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  &__maps {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+
+    a {
+      flex: 1;
+      padding: 11px 4px;
+      font-size: 13px;
+      text-align: center;
+      text-decoration: none;
+      color: mixin.$accent-deep;
+      background: mixin.$white;
+      border: 1px solid mixin.$line;
+      border-radius: 8px;
+      transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+      &:active {
+        color: mixin.$accent-deep;
+        border-color: mixin.$accent;
+      }
+    }
+  }
+
+  &__directions {
+    @include mixin.flex-column;
+    gap: 16px;
+    margin: 0;
+    padding: 24px 4px 0;
+    list-style: none;
+    border-top: 1px solid mixin.$line;
+
+    li {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 12px;
+      align-items: baseline;
+    }
+  }
+
+  &__dir-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: mixin.$accent-deep;
+  }
+
+  &__dir-desc {
+    font-size: 14px;
+    color: mixin.$ink-soft;
+    line-height: 1.6;
+  }
+}

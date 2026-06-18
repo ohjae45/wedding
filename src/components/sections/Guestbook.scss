@@ -1,0 +1,109 @@
+.guestbook {
+  background: #fdfbf7;
+
+  &__form {
+    @include mixin.flex-column;
+    gap: 8px;
+    margin-bottom: 28px;
+
+    input,
+    textarea,
+    button {
+      &:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      color: mixin.$ink;
+      background: mixin.$white;
+      border: 1px solid mixin.$line;
+      border-radius: 8px;
+      resize: none;
+
+      &:focus {
+        outline: none;
+        border-color: mixin.$accent;
+      }
+    }
+
+    button {
+      @include mixin.reset-button;
+      padding: 12px;
+      font-size: 14px;
+      color: mixin.$white;
+      background: mixin.$accent;
+      border-radius: 8px;
+
+      &:active {
+        background: mixin.$accent-deep;
+      }
+    }
+  }
+
+  &__row {
+    display: flex;
+    gap: 8px;
+
+    input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  &__list {
+    @include mixin.flex-column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__empty {
+    text-align: center;
+    font-size: 14px;
+    color: mixin.$ink-soft;
+    padding: 16px 0;
+  }
+
+  &__entry {
+    padding: 14px 16px;
+    background: mixin.$white;
+    border: 1px solid mixin.$line;
+    border-radius: 8px;
+
+    p {
+      margin-top: 6px;
+      font-size: 14px;
+      color: mixin.$ink-soft;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  }
+
+  &__entry-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: mixin.$ink;
+    }
+
+    button {
+      @include mixin.reset-button;
+      font-size: 18px;
+      line-height: 1;
+      color: mixin.$ink-soft;
+    }
+  }
+}

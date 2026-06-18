@@ -1,0 +1,38 @@
+.greeting {
+  text-align: center;
+  background: mixin.$bg;
+
+  &__poem {
+    font-size: 18px;
+    line-height: 2;
+    color: mixin.$ink;
+    margin-bottom: 28px;
+  }
+
+  &__body {
+    font-size: 15px;
+    line-height: 2.1;
+    color: mixin.$ink-soft;
+  }
+
+  &__parents {
+    @include mixin.flex-column;
+    gap: 10px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid mixin.$line;
+    font-size: 15px;
+    color: mixin.$ink;
+  }
+
+  &__rel {
+    margin: 0 8px;
+    color: mixin.$ink-soft;
+    font-size: 14px;
+  }
+
+  &__child {
+    font-weight: 500;
+    font-size: 16px;
+  }
+}

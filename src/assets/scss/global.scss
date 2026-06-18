@@ -1,0 +1,50 @@
+// 전역 리셋 + 기본 타이포그래피. main.tsx 에서 한 번만 import 합니다.
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: mixin.$bg-page;
+  color: mixin.$ink;
+  font-family: mixin.$serif-ko;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+// 데스크탑에서도 모바일 폭으로 가운데 정렬
+#root {
+  @include mixin.flex-center;
+  min-height: 100vh;
+}
+
+// 본문 섹션 공통 좌우/상하 여백
+.section {
+  @include mixin.section;
+}

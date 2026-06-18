@@ -1,0 +1,55 @@
+.about {
+  background: #fdfcfa;
+  text-align: center;
+
+  &__intro {
+    @include mixin.flex-column;
+    gap: 2px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: mixin.$ink-soft;
+    margin-bottom: 36px;
+  }
+
+  &__cards {
+    @include mixin.flex-column;
+    gap: 28px;
+  }
+
+  &__card {
+    padding: 18px 18px 24px;
+    background: mixin.$white;
+    border: 1px solid mixin.$line;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(80, 80, 110, 0.07);
+  }
+
+  &__photo {
+    width: 70%;
+    margin: 0 auto 18px;
+  }
+
+  &__role {
+    font-family: mixin.$serif-en;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: mixin.$accent;
+  }
+
+  &__name {
+    margin-top: 2px;
+    font-size: 19px;
+    font-weight: 500;
+    color: mixin.$ink;
+  }
+
+  &__lines {
+    @include mixin.flex-column;
+    gap: 2px;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: mixin.$ink-soft;
+  }
+}

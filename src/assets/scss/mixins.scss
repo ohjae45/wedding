@@ -1,0 +1,52 @@
+// =============================================================
+// Design tokens + mixins
+// vite.config.base.ts 의 additionalData 로 모든 scss 파일 상단에
+// `@use "@scss/mixins.scss" as mixin;` 이 자동 주입됩니다.
+// 컴포넌트에서는 mixin.$ink, @include mixin.flex-center 처럼 사용하세요.
+// =============================================================
+
+// ---- Colors -------------------------------------------------
+$bg: #fcfbf8; // 청첩장 본문 배경 (아주 옅은 웜화이트)
+$bg-page: #dde2ec; // 청첩장 바깥 여백 (porto 특유의 블루그레이)
+$ink: #4a4640; // 본문 텍스트
+$ink-soft: #8b857b; // 보조 텍스트
+$line: #e7e3da; // 구분선
+$accent: #8f9cbd; // 포인트 (더스티 블루)
+$accent-deep: #6d7b9e;
+$danger: #c0796f;
+$white: #ffffff;
+
+// ---- Layout -------------------------------------------------
+$max-width: 460px;
+
+// ---- Fonts --------------------------------------------------
+$serif-ko: 'Noto Serif KR', 'Gowun Batang', serif;
+$batang: 'Gowun Batang', serif;
+$serif-en: 'Cormorant Garamond', serif;
+$script: 'Parisienne', 'Great Vibes', cursive; // 커버 캘리그라피
+
+// ---- Mixins -------------------------------------------------
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin section {
+  padding: 64px 32px;
+}
+
+@mixin reset-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}

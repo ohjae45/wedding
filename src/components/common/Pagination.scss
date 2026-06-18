@@ -1,0 +1,33 @@
+.pagination {
+  @include mixin.flex-center;
+  gap: 6px;
+  margin-top: 24px;
+
+  button {
+    @include mixin.reset-button;
+    @include mixin.flex-center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 6px;
+    font-size: 13px;
+    color: mixin.$ink-soft;
+    border-radius: 6px;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease;
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+  }
+
+  &__num--on {
+    color: mixin.$white;
+    background: mixin.$accent;
+  }
+
+  &__arrow {
+    font-size: 16px;
+  }
+}

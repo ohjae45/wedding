@@ -1,0 +1,30 @@
+{
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "singleAttributePerLine": true,
+  "plugins": ["prettier-plugin-import-sort"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "options": { "singleQuote": true }
+    },
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "options": { "parser": "babel-ts" }
+    }
+  ],
+  "importSort": {
+    ".js, .ts, .tsx": {
+      "parser": "typescript",
+      "style": "module"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.footer {
+  @include mixin.flex-column;
+  align-items: center;
+  padding: 56px 32px 64px;
+  text-align: center;
+  background: mixin.$bg;
+  border-top: 1px solid mixin.$line;
+
+  &__heart {
+    font-size: 18px;
+    color: mixin.$accent;
+  }
+
+  &__names {
+    margin-top: 14px;
+    font-family: mixin.$serif-en;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    color: mixin.$ink;
+  }
+
+  &__date {
+    margin-top: 4px;
+    font-family: mixin.$serif-en;
+    font-size: 14px;
+    color: mixin.$ink-soft;
+  }
+
+  &__thanks {
+    margin-top: 20px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: mixin.$ink-soft;
+  }
+}

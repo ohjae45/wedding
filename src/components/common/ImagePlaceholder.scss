@@ -1,0 +1,18 @@
+.image-placeholder {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid mixin.$line;
+  background: #efe9df;
+
+  &--rounded {
+    border-radius: 6px;
+  }
+
+  // 틀은 유지하고 이미지는 비율 왜곡 없이 채움 (넘치는 부분만 잘림)
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

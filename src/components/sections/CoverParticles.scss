@@ -1,0 +1,62 @@
+.cover-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2; // 사진/스크림 위, 텍스트 아래
+
+  // 낙하 담당 (세로 이동 + 등장/퇴장)
+  &__fall {
+    position: absolute;
+    top: 0;
+    animation-name: particle-fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+
+  // 흔들림 담당 (좌우 sway + 회전)
+  &__sway {
+    display: block;
+    width: 100%;
+    height: 100%;
+    animation-name: particle-sway;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    filter: drop-shadow(0 1px 2px rgba(120, 80, 90, 0.18));
+    will-change: transform;
+  }
+}
+
+@keyframes particle-fall {
+  0% {
+    transform: translateY(-12vh);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(112vh);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-sway {
+  0% {
+    transform: translateX(calc(var(--drift, 20px) * -1)) rotate(-20deg);
+  }
+  100% {
+    transform: translateX(var(--drift, 20px)) rotate(200deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-particles {
+    display: none;
+  }
+}

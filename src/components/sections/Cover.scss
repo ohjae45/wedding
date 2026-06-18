@@ -1,0 +1,144 @@
+.cover {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 560px;
+  max-height: 860px;
+  overflow: hidden;
+  color: mixin.$white;
+
+  &__photo {
+    position: absolute;
+    inset: 0;
+    background: #cdc4b6;
+    animation: cover-kenburns 7s ease-out both;
+  }
+
+  // 대표 이미지 — 틀(전체 화면)을 채우되 비율 왜곡 없이 (넘치는 부분만 잘림)
+  &__photo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(40, 34, 28, 0.26) 0%, rgba(40, 34, 28, 0) 36%, rgba(40, 34, 28, 0.46) 100%);
+  }
+
+  // ---- 크게 확대한 하트 (위 V · 아래 X 로 보임) -------------
+  &__heart {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    transform-origin: center;
+    // 로드 시: 살짝 더 큰 상태에서 줌인하며 페이드 → 이후 은은한 빛 반복
+    animation:
+      cover-heart-in 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s both,
+      cover-shimmer 4s ease-in-out 2.2s infinite;
+  }
+
+  &__heart-line {
+    fill: rgba(255, 255, 255, 0.95);
+  }
+
+  // ---- 가운데 크로스페이드 텍스트 ---------------------------
+  &__inner {
+    position: absolute;
+    inset: 0;
+    z-index: 3; // 파티클·프레임 위에 텍스트
+    @include mixin.flex-column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    text-align: center;
+  }
+
+  // 두 문구가 같은 자리에서 교체되도록 고정 높이 박스 + 절대배치
+  &__scripts {
+    position: relative;
+    width: 100%;
+    height: 52px;
+  }
+
+  &__script {
+    position: absolute;
+    inset: 0;
+    @include mixin.flex-center;
+    font-family: mixin.$script;
+    font-size: 30px;
+    line-height: 1.1;
+    color: mixin.$white;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 1.4s ease,
+      transform 1.4s ease;
+
+    &--on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__sub {
+    margin-top: 18px;
+    font-family: mixin.$serif-en;
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transition: opacity 1.4s ease;
+
+    &--on {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes cover-kenburns {
+  from {
+    transform: scale(1.16);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes cover-heart-in {
+  from {
+    opacity: 0;
+    transform: scale(2.18);
+  }
+  to {
+    opacity: 1;
+    transform: scale(2);
+  }
+}
+
+@keyframes cover-shimmer {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.95));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover__photo,
+  .cover__heart {
+    animation: none;
+  }
+  .cover__heart {
+    opacity: 1;
+    transform: scale(2);
+  }
+}

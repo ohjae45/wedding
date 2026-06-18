@@ -1,0 +1,17 @@
+.divider {
+  @include mixin.flex-center;
+  gap: 12px;
+  padding: 4px 28px;
+  background: mixin.$bg;
+
+  span {
+    flex: 1;
+    height: 1px;
+    background: mixin.$line;
+  }
+
+  small {
+    font-size: 10px;
+    color: mixin.$accent;
+  }
+}

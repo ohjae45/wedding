@@ -1,0 +1,93 @@
+.account {
+  background: mixin.$bg;
+
+  &__desc {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.9;
+    color: mixin.$ink-soft;
+    margin-bottom: 28px;
+  }
+
+  &__groups {
+    @include mixin.flex-column;
+    gap: 12px;
+  }
+
+  &__group {
+    border: 1px solid mixin.$line;
+    border-radius: 10px;
+    overflow: hidden;
+    background: mixin.$white;
+  }
+
+  &__toggle {
+    @include mixin.reset-button;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 15px;
+    color: mixin.$ink;
+  }
+
+  &__chevron {
+    transition: transform 0.25s ease;
+    color: mixin.$accent;
+  }
+
+  &__group--open &__chevron {
+    transform: rotate(180deg);
+  }
+
+  &__list {
+    @include mixin.flex-column;
+    margin: 0;
+    padding: 0 20px 8px;
+    list-style: none;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 0;
+    border-top: 1px solid mixin.$line;
+
+    button {
+      @include mixin.reset-button;
+      flex-shrink: 0;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: mixin.$accent-deep;
+      border: 1px solid mixin.$accent;
+      border-radius: 16px;
+    }
+  }
+
+  &__row-bank {
+    font-size: 14px;
+    color: mixin.$ink;
+
+    span {
+      margin-left: 4px;
+      font-size: 12px;
+      color: mixin.$ink-soft;
+    }
+  }
+
+  &__row-num {
+    margin-top: 4px;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    color: mixin.$ink;
+  }
+
+  &__row-holder {
+    margin-top: 2px;
+    font-size: 12px;
+    color: mixin.$ink-soft;
+  }
+}

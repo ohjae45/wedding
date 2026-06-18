@@ -1,0 +1,86 @@
+.timeline {
+  background: mixin.$bg;
+
+  &__list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    // 중앙 세로선
+    &::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: 50%;
+      width: 1px;
+      background: mixin.$line;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 26px;
+    align-items: center;
+    padding: 18px 0;
+  }
+
+  &__photo {
+    grid-column: 1;
+  }
+
+  &__text {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  // 홀수번째(--alt): 사진 오른쪽 / 텍스트 왼쪽
+  &__item--alt &__photo {
+    grid-column: 2;
+  }
+  &__item--alt &__text {
+    grid-column: 1;
+    text-align: right;
+  }
+
+  &__dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: mixin.$accent;
+    border: 2px solid mixin.$bg;
+    transform: translate(-50%, -50%);
+  }
+
+  &__date {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: mixin.$serif-en;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: mixin.$white;
+    background: mixin.$accent;
+    border-radius: 12px;
+  }
+
+  &__title {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: mixin.$ink;
+  }
+
+  &__desc {
+    margin-top: 4px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: mixin.$ink-soft;
+  }
+}
