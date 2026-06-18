@@ -49,11 +49,24 @@ function KakaoMap() {
             const pos = new kakao.maps.LatLng(lat, lng);
             map.relayout(); // 컨테이너 크기 확정 후 재계산 (초기 레이아웃 타이밍 보정)
             map.setCenter(pos);
-            const marker = new kakao.maps.Marker({ map, position: pos });
-            const info = new kakao.maps.InfoWindow({
-              content: `<div style="padding:6px 10px;font-size:12px;white-space:nowrap;">${VENUE.name}</div>`,
+
+            // 하트 마커 + 글자 크기에 맞는 말풍선 (커스텀 오버레이)
+            const content = document.createElement('div');
+            content.className = 'map-pin';
+            content.innerHTML = `
+              <div class="map-pin__label">${VENUE.name}</div>
+              <div class="map-pin__heart">
+                <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#e0808f" d="M12 21s-7.6-4.9-10.1-9.6C-.2 8 1.7 3.8 5.5 3.8c2.4 0 4.1 1.7 5.2 3.6 1.1-1.9 2.8-3.6 5.2-3.6 3.8 0 5.7 4.2 3.6 7.6C19.6 16.1 12 21 12 21z"/>
+                </svg>
+              </div>`;
+            new kakao.maps.CustomOverlay({
+              map,
+              position: pos,
+              content,
+              xAnchor: 0.5,
+              yAnchor: 1, // 하트 끝(아래)이 좌표를 가리키도록
             });
-            info.open(map, marker);
           };
 
           // 좌표가 있으면 그대로, 없으면 주소 → 실패 시 장소명으로 검색
