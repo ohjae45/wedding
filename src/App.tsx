@@ -1,4 +1,3 @@
-import MusicToggle from '@components/common/MusicToggle';
 import About from '@components/sections/About';
 import Account from '@components/sections/Account';
 import Calendar from '@components/sections/Calendar';
@@ -18,7 +17,6 @@ import './App.scss';
 function App() {
   return (
     <div className='invitation'>
-      <MusicToggle />
       <Cover />
       <Greeting />
       <PhotoBand
