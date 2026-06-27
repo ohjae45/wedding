@@ -2,6 +2,7 @@ import ImagePlaceholder from '@components/common/ImagePlaceholder';
 import Reveal from '@components/common/Reveal';
 import SectionTitle from '@components/common/SectionTitle';
 import { TIMELINE } from '@constants/wedding';
+import storyFirstMeet from '@images/story-firstmeet.jpeg';
 import storyLove from '@images/story-love.jpeg';
 import storyPropose from '@images/story-propose.jpeg';
 import storyWedding from '@images/story-wedding.jpeg';
@@ -9,6 +10,7 @@ import './Timeline.scss';
 
 // 타임라인 항목별 사진 (없는 항목은 기본 이미지 사용)
 const IMAGE_BY_TITLE: Record<string, string> = {
+  '첫 만남': storyFirstMeet,
   '연애 시작': storyLove,
   프로포즈: storyPropose,
   결혼식: storyWedding,
