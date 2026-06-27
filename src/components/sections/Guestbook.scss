@@ -73,37 +73,46 @@
   }
 
   &__entry {
-    padding: 14px 16px;
+    position: relative;
+    padding: 22px 20px;
     background: mixin.$white;
     border: 1px solid mixin.$line;
-    border-radius: 8px;
-
-    p {
-      margin-top: 6px;
-      font-size: 14px;
-      color: mixin.$ink-soft;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
+    border-radius: 12px;
   }
 
-  &__entry-head {
+  &__entry-close {
+    @include mixin.reset-button;
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 18px;
+    line-height: 1;
+    color: mixin.$ink-soft;
+  }
+
+  &__entry-message {
+    margin: 0;
+    font-size: 14px;
+    color: mixin.$ink;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  &__entry-foot {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 13px;
+  }
 
-    strong {
-      font-size: 14px;
-      font-weight: 600;
-      color: mixin.$ink;
-    }
+  &__entry-from {
+    color: mixin.$accent;
+  }
 
-    button {
-      @include mixin.reset-button;
-      font-size: 18px;
-      line-height: 1;
-      color: mixin.$ink-soft;
-    }
+  &__entry-date {
+    color: mixin.$ink-soft;
   }
 }

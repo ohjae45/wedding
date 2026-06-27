@@ -1,5 +1,5 @@
 import Reveal from '@components/common/Reveal';
-import weddingImg from '@images/wedding.jpeg';
+import weddingImg from '@images/band.jpg';
 import './PhotoBand.scss';
 
 interface PhotoBandProps {

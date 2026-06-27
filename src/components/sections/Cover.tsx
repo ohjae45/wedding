@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import CoverParticles from '@components/sections/CoverParticles';
 import { BRIDE, GROOM, WEDDING_DATE } from '@constants/wedding';
-import weddingImg from '@images/wedding.jpeg';
+import weddingImg from '@images/main.jpg';
 import { formatDotDate, weekdayEn } from '@utils/format';
 import './Cover.scss';
 

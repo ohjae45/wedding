@@ -10,6 +10,11 @@
   &__item {
     @include mixin.reset-button;
     display: block;
+
+    // 그리드 썸네일은 중앙이 아닌 상단 기준으로 크롭 (인물 얼굴이 잘리지 않도록)
+    .image-placeholder__img {
+      object-position: top;
+    }
   }
 
   &__hint {

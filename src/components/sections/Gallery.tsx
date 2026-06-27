@@ -1,18 +1,26 @@
 import { useState } from 'react';
 import ImagePlaceholder from '@components/common/ImagePlaceholder';
 import SectionTitle from '@components/common/SectionTitle';
-import { GALLERY_COUNT } from '@constants/wedding';
 import './Gallery.scss';
+
+// src/assets/images 의 모든 .jpg 사진을 갤러리에 로드 (회전된 테스트용 wedding.jpeg 는 .jpeg 라 제외)
+// 순서: main → gallery-01..NN → band
+const rank = (p: string) => (p.includes('/main.') ? 0 : p.includes('/band.') ? 2 : 1);
+const IMAGES = Object.entries(
+  import.meta.glob<string>('@images/*.jpg', { eager: true, import: 'default' }),
+)
+  .sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b))
+  .map(([, url]) => url);
 
 function Gallery() {
   const [active, setActive] = useState<number | null>(null);
-  const items = Array.from({ length: GALLERY_COUNT }, (_, i) => i);
+  const count = IMAGES.length;
 
   const close = () => setActive(null);
   const move = (dir: number) =>
     setActive((cur) => {
       if (cur === null) return cur;
-      return (cur + dir + GALLERY_COUNT) % GALLERY_COUNT;
+      return (cur + dir + count) % count;
     });
 
   return (
@@ -23,15 +31,16 @@ function Gallery() {
       />
 
       <div className='gallery__grid'>
-        {items.map((i) => (
+        {IMAGES.map((src, i) => (
           <button
-            key={i}
+            key={src}
             type='button'
             className='gallery__item'
             onClick={() => setActive(i)}
             aria-label={`갤러리 이미지 ${i + 1} 크게 보기`}
           >
             <ImagePlaceholder
+              src={src}
               ratio='1 / 1'
               label={`${i + 1}`}
             />
@@ -72,8 +81,9 @@ function Gallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <ImagePlaceholder
+              src={IMAGES[active]}
               ratio='3 / 4'
-              label={`이미지 ${active + 1} / ${GALLERY_COUNT}`}
+              label={`이미지 ${active + 1} / ${count}`}
               rounded
             />
           </div>

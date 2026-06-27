@@ -10,6 +10,13 @@ import './Guestbook.scss';
 
 const PAGE_SIZE = 5;
 
+function formatDate(ms: number): string {
+  if (!ms) return '';
+  const d = new Date(ms);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 function Guestbook() {
   const [entries, setEntries] = useState<GuestEntry[]>([]);
   const [name, setName] = useState('');
@@ -31,7 +38,11 @@ function Guestbook() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !message.trim() || submitting) return;
+    if (submitting) return;
+    if (!name.trim() || !message.trim()) {
+      alert('이름과 내용을 모두 입력해주세요.');
+      return;
+    }
     setSubmitting(true);
     try {
       await addGuestEntry({ name: name.trim(), message: message.trim() });
@@ -101,19 +112,21 @@ function Guestbook() {
             key={entry.id}
             className='guestbook__entry'
           >
-            <div className='guestbook__entry-head'>
-              <strong>{entry.name}</strong>
-              {isAdmin && (
-                <button
-                  type='button'
-                  onClick={() => handleDelete(entry)}
-                  aria-label='삭제'
-                >
-                  ×
-                </button>
-              )}
+            {isAdmin && (
+              <button
+                type='button'
+                className='guestbook__entry-close'
+                onClick={() => handleDelete(entry)}
+                aria-label='삭제'
+              >
+                ×
+              </button>
+            )}
+            <p className='guestbook__entry-message'>{entry.message}</p>
+            <div className='guestbook__entry-foot'>
+              <span className='guestbook__entry-from'>From {entry.name}</span>
+              <time className='guestbook__entry-date'>{formatDate(entry.createdAt)}</time>
             </div>
-            <p>{entry.message}</p>
           </li>
         ))}
       </ul>

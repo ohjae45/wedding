@@ -50,7 +50,7 @@ export const BRIDE: Person = {
 };
 
 export const GROOM_PARENTS: Parent = { father: '故 오진천', mother: '이래옥' };
-export const BRIDE_PARENTS: Parent = { father: '이아버지', mother: '최어머니' };
+export const BRIDE_PARENTS: Parent = { father: '송종현', mother: '김희수' };
 
 /** 예식 일시: 2026년 10월 3일(토) 오후 1시 20분 */
 export const WEDDING_DATE = new Date(2026, 9, 3, 13, 20); // month 는 0-base (9 = 10월)
@@ -86,23 +86,33 @@ export const GREETING = {
 
 /** 마음 전하실 곳 — 신랑측 부모님 계좌는 추후 추가 예정 */
 export const GROOM_ACCOUNTS: Account[] = [
-  { label: '신랑', bank: '농협', number: '207054-56-356055', holder: '오재환' },
+  { label: '신랑', bank: '농협은행', number: '207054-56-356055', holder: '오재환' },
+  { label: '신랑 어머니', bank: '농협은행', number: '207054-56-202165', holder: '이래옥' },
 ];
 
 export const BRIDE_ACCOUNTS: Account[] = [
-  { label: '신부', bank: '○○은행', number: '000-0000-0000-00', holder: '송유라' },
-  { label: '신부 아버지', bank: '○○은행', number: '000-0000-0000-00', holder: '이아버지' },
-  { label: '신부 어머니', bank: '○○은행', number: '000-0000-0000-00', holder: '최어머니' },
+  {
+    label: '신부',
+    bank: '우리은행',
+    number: '1002-253-175143',
+    holder: '송유라',
+    kakaopayUrl: 'https://qr.kakaopay.com/Ej7vRxyaH',
+  },
+  { label: '신부 아버지', bank: '우리은행', number: '010-9076-4598', holder: '송종현' },
+  {
+    label: '신부 어머니',
+    bank: '우리은행',
+    number: '010-9364-4598',
+    holder: '김희수',
+    kakaopayUrl: 'https://qr.kakaopay.com/Ej7y1vecT',
+  },
 ];
 
 /** 혼주 / 신랑신부 연락처 */
 export const CONTACTS: Contact[] = [
   { label: '신랑', name: '오재환', tel: '010-2079-4542' },
-  { label: '신부', name: '송유라', tel: '010-0000-0000' },
+  { label: '신부', name: '송유라', tel: '010-2037-4598' },
 ];
-
-/** 갤러리 이미지 개수 (실제 이미지 준비 전, placeholder 개수) */
-export const GALLERY_COUNT = 9;
 
 /** ABOUT US — 신랑/신부 소개 카드 */
 export interface Profile {
@@ -118,12 +128,12 @@ export const ABOUT = {
   groom: {
     role: '신랑',
     name: '오재환',
-    lines: ['언제나 든든한 사람,', '한결같은 미소로 곁을 지키는', 'OO년생 재환입니다.'],
+    lines: ['오진천 · 이래옥의 아들,', '1993년 4월 경기 화성 출생', '호기심 많은 손재주 왕'],
   } as Profile,
   bride: {
     role: '신부',
     name: '송유라',
-    lines: ['작은 것에도 행복을 찾는,', '따뜻한 마음을 가진', 'OO년생 유라입니다.'],
+    lines: ['송종현 · 김희수의 딸', '1997년 2월 경기 하남 출생', '감성 과다 하남소녀'],
   } as Profile,
 };
 
