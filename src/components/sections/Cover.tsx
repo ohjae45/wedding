@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CoverParticles from '@components/sections/CoverParticles';
 import { BRIDE, GROOM, WEDDING_DATE } from '@constants/wedding';
 import weddingImg from '@images/main.jpg';
@@ -14,20 +14,31 @@ const SCRIPTS = ['We are getting married', 'Celebrate with us'];
 
 function Cover() {
   const [slide, setSlide] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const id = setInterval(() => setSlide((s) => (s + 1) % SCRIPTS.length), 4000);
     return () => clearInterval(id);
   }, []);
 
+  // 캐시된 이미지는 onLoad가 React 연결 전에 끝날 수 있어 complete 여부를 직접 확인
+  useEffect(() => {
+    if (imgRef.current?.complete) setLoaded(true);
+  }, []);
+
   return (
     <section className='cover'>
-      {/* 대표 이미지 (테스트: wedding.jpeg) */}
-      <div className='cover__photo'>
+      {/* 대표 이미지 — 로드 완료 후 부드럽게 페이드인 + 줌인 */}
+      <div className={`cover__photo${loaded ? ' is-loaded' : ''}`}>
         <img
+          ref={imgRef}
           src={weddingImg}
           alt='대표 이미지'
           className='cover__photo-img'
+          fetchPriority='high'
+          decoding='async'
+          onLoad={() => setLoaded(true)}
         />
       </div>
       <div className='cover__scrim' />
