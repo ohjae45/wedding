@@ -31,10 +31,12 @@
 
   &__photo {
     grid-column: 1;
+    grid-row: 1; // alt 행에서 텍스트가 다음 행으로 밀리지 않도록 같은 행 고정
   }
 
   &__text {
     grid-column: 2;
+    grid-row: 1;
     text-align: left;
   }
 
