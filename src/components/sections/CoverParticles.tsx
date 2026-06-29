@@ -14,8 +14,13 @@ interface Particle {
   opacity: number;
 }
 
+// 카카오톡 인앱 웹뷰는 GPU 합성이 약해 입자가 많으면 버벅입니다.
+// 해당 환경에서만 입자 수를 줄여 부드럽게 유지합니다. (크롬/사파리는 그대로)
+const isKakaoInApp =
+  typeof navigator !== 'undefined' && /KAKAOTALK/i.test(navigator.userAgent);
+
 // 모듈 로드 시 1회만 생성 → 리렌더에도 위치가 고정됩니다.
-const COUNT = 22;
+const COUNT = isKakaoInApp ? 10 : 22;
 const PARTICLES: Particle[] = Array.from({ length: COUNT }, (_, i) => {
   const r = (n: number) => Math.random() * n;
   return {

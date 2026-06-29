@@ -16,6 +16,10 @@
   }
 
   // 흔들림 담당 (좌우 sway + 회전)
+  // drop-shadow 와 will-change 를 제거: 22개 입자에 걸린 filter 가 매 프레임
+  // 리페인트를 유발하고, fall+sway 양쪽 will-change 로 레이어가 44개나 상시
+  // 승격되어 카카오 인앱 웹뷰에서 버벅임/메모리 압박을 일으켰습니다.
+  // 합성은 바깥 __fall 레이어 하나로 충분합니다.
   &__sway {
     display: block;
     width: 100%;
@@ -24,8 +28,6 @@
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    filter: drop-shadow(0 1px 2px rgba(120, 80, 90, 0.18));
-    will-change: transform;
   }
 }
 

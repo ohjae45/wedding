@@ -137,13 +137,17 @@
   }
 }
 
+// 무한 반복되는 은은한 빛 — filter(drop-shadow) 대신 opacity 로 처리.
+// filter 애니메이션은 GPU 합성이 안 돼 매 프레임 전체 영역을 리페인트하므로
+// 카카오 인앱 웹뷰처럼 합성이 약한 환경에서 버벅임의 주원인이 됩니다.
+// opacity 는 합성 레이어에서 처리돼 비용이 거의 없습니다.
 @keyframes cover-shimmer {
   0%,
   100% {
-    filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.5));
+    opacity: 0.9;
   }
   50% {
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.95));
+    opacity: 1;
   }
 }
 
