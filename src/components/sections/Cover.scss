@@ -12,12 +12,6 @@
     position: absolute;
     inset: 0;
     background: #cdc4b6;
-
-    // 이미지 로드 완료 시 부드러운 페이드인 + 은은한 줌인 시작 (베이지→이미지 자연 전환)
-    &.is-loaded .cover__photo-img {
-      opacity: 1;
-      animation: cover-kenburns 9s ease-out both;
-    }
   }
 
   // 대표 이미지 — 틀(전체 화면)을 채우되 비율 왜곡 없이 (넘치는 부분만 잘림)
@@ -27,8 +21,16 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 1s ease;
-    will-change: opacity, transform;
+    will-change: transform;
+  }
+
+  // ---- 로딩 완료 후(active) 등장 ------------------------------
+  // 로더가 사라지는 순간 이미지는 이미 완전히 보이도록 즉시 노출(페이드 X) →
+  // 베이지 배경이 비치는 빈틈 없음. 부드러움은 로더 페이드아웃이 담당.
+  // 은은한 줌인만 적용.
+  &--active &__photo-img {
+    opacity: 1;
+    animation: cover-kenburns 9s ease-out both;
   }
 
   &__scrim {
@@ -46,7 +48,11 @@
     z-index: 2;
     pointer-events: none;
     transform-origin: center;
-    // 로드 시: 살짝 더 큰 상태에서 줌인하며 페이드 → 이후 은은한 빛 반복
+    opacity: 0; // active 전에는 숨김
+  }
+
+  // active 시: 살짝 더 큰 상태에서 줌인하며 페이드 → 이후 은은한 빛 반복
+  &--active &__heart {
     animation:
       cover-heart-in 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s both,
       cover-shimmer 4s ease-in-out 2.2s infinite;
@@ -142,16 +148,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cover__photo-img,
-  .cover__heart {
+  .cover--active .cover__photo-img,
+  .cover--active .cover__heart {
     animation: none;
   }
-  .cover__photo-img {
+  .cover--active .cover__photo-img {
     opacity: 1;
     transform: none;
     transition: opacity 0.4s ease;
   }
-  .cover__heart {
+  .cover--active .cover__heart {
     opacity: 1;
     transform: scale(2);
   }

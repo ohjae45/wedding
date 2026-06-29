@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CoverParticles from '@components/sections/CoverParticles';
 import { BRIDE, GROOM, WEDDING_DATE } from '@constants/wedding';
-import weddingImg from '@images/main.jpg';
+import weddingImg from '@images/main.webp';
 import { formatDotDate, weekdayEn } from '@utils/format';
 import './Cover.scss';
 
@@ -12,33 +12,31 @@ const subtitle = `${groomEn} | ${formatDotDate(WEDDING_DATE)} ${weekdayEn(WEDDIN
 // 가운데 캘리그라피 — 두 문구를 같은 자리에서 크로스페이드
 const SCRIPTS = ['We are getting married', 'Celebrate with us'];
 
-function Cover() {
-  const [slide, setSlide] = useState(0);
-  const [loaded, setLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
+interface CoverProps {
+  /** 로딩 화면이 끝나 커버를 등장시킬지 여부 (App 에서 이미지 로드 완료 시 true) */
+  active: boolean;
+}
 
+function Cover({ active }: CoverProps) {
+  const [slide, setSlide] = useState(0);
+
+  // 커버가 활성화된 뒤에야 캘리그라피 크로스페이드를 시작
   useEffect(() => {
+    if (!active) return;
     const id = setInterval(() => setSlide((s) => (s + 1) % SCRIPTS.length), 4000);
     return () => clearInterval(id);
-  }, []);
-
-  // 캐시된 이미지는 onLoad가 React 연결 전에 끝날 수 있어 complete 여부를 직접 확인
-  useEffect(() => {
-    if (imgRef.current?.complete) setLoaded(true);
-  }, []);
+  }, [active]);
 
   return (
-    <section className='cover'>
-      {/* 대표 이미지 — 로드 완료 후 부드럽게 페이드인 + 줌인 */}
-      <div className={`cover__photo${loaded ? ' is-loaded' : ''}`}>
+    <section className={`cover${active ? ' cover--active' : ''}`}>
+      {/* 대표 이미지 — 로딩 완료 후 부드럽게 페이드인 + 줌인 */}
+      <div className='cover__photo'>
         <img
-          ref={imgRef}
           src={weddingImg}
           alt='대표 이미지'
           className='cover__photo-img'
           fetchPriority='high'
           decoding='async'
-          onLoad={() => setLoaded(true)}
         />
       </div>
       <div className='cover__scrim' />
