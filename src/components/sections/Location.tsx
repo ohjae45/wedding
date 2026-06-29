@@ -11,7 +11,6 @@ const q = encodeURIComponent(VENUE.name);
 const MAP_LINKS = [
   { label: '네이버지도', href: `https://map.naver.com/v5/search/${q}` },
   { label: '카카오맵', href: `https://map.kakao.com/?q=${q}` },
-  { label: '티맵', href: `tmap://search?name=${q}` },
 ];
 
 function Location() {
