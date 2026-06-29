@@ -1,9 +1,61 @@
 .photo-band {
+  position: relative;
   width: 100%;
 
   &__img {
     display: block;
     width: 100%;
     object-fit: cover; // 틀 비율 유지하며 이미지 원본 비율 왜곡 없이 채움
+  }
+
+  // 흰 글씨 가독성을 위한 부드러운 그라데이션 + 문구 배치 (이미지 상단 40% 지점)
+  &__caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 8%;
+    margin: 0;
+    padding: 3.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    text-align: center;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+    // 위·아래 끝이 완전히 투명 → 경계선 없이 자연스럽게 사라지는 세로 그라데이션
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    // 초기: 아래로 내려가 숨은 상태
+    opacity: 0;
+    transform: translateY(36px);
+    transition:
+      opacity 1s ease,
+      transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+
+    span {
+      display: block;
+    }
+
+    // 스크롤 진입 시: 사진이 먼저 자리잡은 뒤(0.5s 지연) 아래 → 위로 페이드 인
+    &.is-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.5s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: opacity 0.4s ease;
+      transition-delay: 0.3s;
+      transform: none;
+    }
   }
 }
