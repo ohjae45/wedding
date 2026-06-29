@@ -35,6 +35,65 @@ function loadKakaoSdk(): Promise<void> {
   });
 }
 
+/** 카카오톡 말풍선 (currentColor 채움) */
+function KakaoIcon() {
+  return (
+    <svg
+      className='share__icon'
+      viewBox='0 0 24 24'
+      width='16'
+      height='16'
+      fill='currentColor'
+      aria-hidden
+    >
+      <path d='M12 3C6.48 3 2 6.58 2 11c0 2.83 1.88 5.31 4.71 6.71-.2.71-.72 2.62-.83 3.03-.13.5.18.5.39.36.16-.11 2.6-1.77 3.66-2.49.67.09 1.36.14 2.07.14 5.52 0 10-3.58 10-8s-4.48-8-10-8Z' />
+    </svg>
+  );
+}
+
+/** 공유(위로 내보내기) — 선 아이콘 */
+function ShareIcon() {
+  return (
+    <svg
+      className='share__icon'
+      viewBox='0 0 24 24'
+      width='16'
+      height='16'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden
+    >
+      <path d='M12 3v13' />
+      <path d='m8 7 4-4 4 4' />
+      <path d='M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7' />
+    </svg>
+  );
+}
+
+/** 링크(체인) — 선 아이콘 */
+function LinkIcon() {
+  return (
+    <svg
+      className='share__icon'
+      viewBox='0 0 24 24'
+      width='16'
+      height='16'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden
+    >
+      <path d='M9 13a4 4 0 0 0 6 .4l3-3a4 4 0 0 0-5.7-5.7l-1.7 1.7' />
+      <path d='M15 11a4 4 0 0 0-6-.4l-3 3a4 4 0 0 0 5.7 5.7l1.7-1.7' />
+    </svg>
+  );
+}
+
 function Share() {
   const shareTitle = `${GROOM.lastName}${GROOM.firstName} ♥ ${BRIDE.lastName}${BRIDE.firstName} 결혼합니다`;
   const [kakaoReady, setKakaoReady] = useState(false);
@@ -102,6 +161,7 @@ function Share() {
             className='share__kakao'
             onClick={handleKakaoShare}
           >
+            <KakaoIcon />
             카카오톡 공유
           </button>
         )}
@@ -109,6 +169,7 @@ function Share() {
           type='button'
           onClick={handleShare}
         >
+          <ShareIcon />
           공유하기
         </button>
         <button
@@ -116,6 +177,7 @@ function Share() {
           className='share__copy'
           onClick={handleCopyLink}
         >
+          <LinkIcon />
           링크 복사
         </button>
       </div>
