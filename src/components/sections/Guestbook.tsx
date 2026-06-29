@@ -77,34 +77,6 @@ function Guestbook() {
         ko='축하 메시지'
       />
 
-      <Reveal>
-        <form
-          className='guestbook__form'
-          onSubmit={handleSubmit}
-        >
-          <input
-            type='text'
-            placeholder='이름'
-            value={name}
-            maxLength={12}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <textarea
-            placeholder='축하의 마음을 남겨주세요'
-            value={message}
-            maxLength={200}
-            rows={3}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button
-            type='submit'
-            disabled={submitting}
-          >
-            {submitting ? '등록 중...' : '메시지 남기기'}
-          </button>
-        </form>
-      </Reveal>
-
       <ul className='guestbook__list'>
         {entries.length === 0 && <li className='guestbook__empty'>첫 번째 축하 메시지를 남겨주세요 🤍</li>}
         {visible.map((entry) => (
@@ -136,6 +108,34 @@ function Guestbook() {
         totalPages={totalPages}
         onChange={setPage}
       />
+
+      <Reveal>
+        <form
+          className='guestbook__form'
+          onSubmit={handleSubmit}
+        >
+          <input
+            type='text'
+            placeholder='이름'
+            value={name}
+            maxLength={12}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <textarea
+            placeholder='축하의 마음을 남겨주세요'
+            value={message}
+            maxLength={200}
+            rows={3}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <button
+            type='submit'
+            disabled={submitting}
+          >
+            {submitting ? '등록 중...' : '메시지 남기기'}
+          </button>
+        </form>
+      </Reveal>
     </section>
   );
 }

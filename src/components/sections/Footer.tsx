@@ -8,7 +8,7 @@ const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 function Footer() {
   const { isAdmin, setAdmin } = useAdminStore();
 
-  // 시크릿 트리거 — 신랑 이름을 누르면 관리자 모드 토글 (겉으로는 일반 텍스트)
+  // 시크릿 트리거 — 이름 위 하트를 누르면 관리자 모드 토글 (겉으로는 일반 장식)
   const handleSecret = () => {
     if (isAdmin) {
       setAdmin(false);
@@ -27,13 +27,16 @@ function Footer() {
 
   return (
     <footer className='footer'>
-      <span className='footer__heart'>♡</span>
+      {/* 하트 = 시크릿 관리자 트리거. 링크/버튼 특성 없이 일반 장식으로 보이게. */}
+      <span
+        className='footer__heart'
+        onClick={handleSecret}
+      >
+        ♡
+      </span>
       <p className='footer__names'>
-        {/* 신랑 이름 = 시크릿 관리자 트리거. 링크/버튼 특성 없이 일반 텍스트로 보이게. */}
-        <span onClick={handleSecret}>
-          {GROOM.lastName}
-          {GROOM.firstName}
-        </span>
+        {GROOM.lastName}
+        {GROOM.firstName}
         {' & '}
         {BRIDE.lastName}
         {BRIDE.firstName}

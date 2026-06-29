@@ -4,7 +4,7 @@
   &__form {
     @include mixin.flex-column;
     gap: 8px;
-    margin-bottom: 28px;
+    margin-top: 28px;
 
     input,
     textarea,
