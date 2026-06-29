@@ -98,5 +98,6 @@
     font-size: 14px;
     color: mixin.$ink-soft;
     line-height: 1.6;
+    white-space: pre-line; // desc 내 \n 을 줄바꿈으로 렌더
   }
 }
