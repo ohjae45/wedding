@@ -20,7 +20,7 @@ const isKakaoInApp =
   typeof navigator !== 'undefined' && /KAKAOTALK/i.test(navigator.userAgent);
 
 // 모듈 로드 시 1회만 생성 → 리렌더에도 위치가 고정됩니다.
-const COUNT = isKakaoInApp ? 10 : 22;
+const COUNT = isKakaoInApp ? 14 : 30;
 const PARTICLES: Particle[] = Array.from({ length: COUNT }, (_, i) => {
   const r = (n: number) => Math.random() * n;
   return {
