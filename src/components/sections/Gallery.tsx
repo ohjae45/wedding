@@ -43,6 +43,7 @@ function Gallery() {
               src={src}
               ratio='1 / 1'
               label={`${i + 1}`}
+              objectPosition={src.includes('band') ? 'bottom' : undefined}
             />
           </button>
         ))}
@@ -85,6 +86,7 @@ function Gallery() {
               ratio='3 / 4'
               label={`이미지 ${active + 1} / ${count}`}
               rounded
+              objectPosition={IMAGES[active].includes('band') ? 'bottom' : undefined}
             />
           </div>
           <button
